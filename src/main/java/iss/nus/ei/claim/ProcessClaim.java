@@ -30,15 +30,22 @@ public class ProcessClaim {
 		TaskService taskService = engine.getTaskService();
 
 		ksession.startProcess("claim.bpmn.claim_process");
-		
-		// let employee execute Task 1
-		List<TaskSummary> list = taskService.getTasksAssignedAsPotentialOwner("john", "en-UK");
-		
-		TaskSummary task = list.get(0);
+
+		// let employee(john) execute Task 1
+		List<TaskSummary> johnTaskList = taskService.getTasksAssignedAsPotentialOwner("john", "en-UK");
+
+		TaskSummary task = johnTaskList.get(0);
 		System.out.println("Employee is executing task " + task.getName());
 		taskService.start(task.getId(), "john");
 		taskService.complete(task.getId(), "john", null);
-		
+
+		// let manager(mary) execute Task 2
+		List<TaskSummary> maryTaskList = taskService.getTasksAssignedAsPotentialOwner("mary", "en-UK");
+
+		TaskSummary maryTask = maryTaskList.get(0);
+		System.out.println("Manager is executing task " + task.getName());
+		taskService.start(maryTask.getId(), "mary");
+		taskService.complete(maryTask.getId(), "mary", null);
 
 		manager.disposeRuntimeEngine(engine);
 		System.exit(0);
@@ -48,11 +55,10 @@ public class ProcessClaim {
 		JBPMHelper.startH2Server();
 		JBPMHelper.setupDataSource();
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("org.jbpm.persistence.jpa");
-		RuntimeEnvironmentBuilder builder = RuntimeEnvironmentBuilder.Factory.get()
-			.newDefaultBuilder().entityManagerFactory(emf)
-			.knowledgeBase(kbase);
-		return RuntimeManagerFactory.Factory.get()
-			.newSingletonRuntimeManager(builder.get(), "iss.nus.ei:claim-jbpm:1.0");
+		RuntimeEnvironmentBuilder builder = RuntimeEnvironmentBuilder.Factory.get().newDefaultBuilder()
+				.entityManagerFactory(emf).knowledgeBase(kbase);
+		return RuntimeManagerFactory.Factory.get().newSingletonRuntimeManager(builder.get(),
+				"iss.nus.ei:claim-jbpm:1.0");
 	}
 
 }
