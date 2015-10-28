@@ -5,12 +5,12 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.sample</groupId>
-  <artifactId>jbpm-example</artifactId>
+  <groupId>iss.nus.ei</groupId>
+  <artifactId>claim-jbpm</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
-  <name>jBPM :: Sample Maven Project</name>
-  <description>A sample jBPM Maven project</description>
+  <name>jBPM :: Claim </name>
+  <description>ISS EI Demo project</description>
 
   <properties>
     <jbpm.version>6.0.0.Final</jbpm.version>
