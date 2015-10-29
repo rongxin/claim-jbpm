@@ -30,12 +30,12 @@ public class ProcessClaim {
 		RuntimeEngine engine = manager.getRuntimeEngine(null);
 		KieSession ksession = engine.getKieSession();
 		TaskService taskService = engine.getTaskService();
-
+		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("managerApproval", false);
+		params.put("managerApproval", true);
 		
 		ksession.startProcess("claim.bpmn.claim_process",params);
-
+		
 		// let employee(john) execute Task 1
 		List<TaskSummary> johnTaskList = taskService.getTasksAssignedAsPotentialOwner("john", "en-UK");
 
@@ -43,15 +43,19 @@ public class ProcessClaim {
 		System.out.println("Employee is executing task " + task.getName());
 		taskService.start(task.getId(), "john");
 		taskService.complete(task.getId(), "john", null);
-
+		
 		// let manager(mary) execute Task 2
 		List<TaskSummary> maryTaskList = taskService.getTasksAssignedAsPotentialOwner("mary", "en-UK");
 
 		TaskSummary maryTask = maryTaskList.get(0);
 		System.out.println("Manager is executing task " + task.getName());
 		taskService.start(maryTask.getId(), "mary");
-		taskService.complete(maryTask.getId(), "mary", null);
-
+		
+		Map<String, Object> results = new HashMap<String, Object>();
+		results.put("managerApproval", false);
+		
+		taskService.complete(maryTask.getId(), "mary", results);
+		
 		manager.disposeRuntimeEngine(engine);
 		System.exit(0);
 	}
