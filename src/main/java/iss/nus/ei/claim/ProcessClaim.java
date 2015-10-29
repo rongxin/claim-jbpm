@@ -1,6 +1,8 @@
 package iss.nus.ei.claim;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -29,7 +31,10 @@ public class ProcessClaim {
 		KieSession ksession = engine.getKieSession();
 		TaskService taskService = engine.getTaskService();
 
-		ksession.startProcess("claim.bpmn.claim_process");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("managerApproval", false);
+		
+		ksession.startProcess("claim.bpmn.claim_process",params);
 
 		// let employee(john) execute Task 1
 		List<TaskSummary> johnTaskList = taskService.getTasksAssignedAsPotentialOwner("john", "en-UK");

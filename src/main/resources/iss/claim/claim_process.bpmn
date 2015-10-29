@@ -88,7 +88,7 @@
       </dataInputAssociation>
       <potentialOwner>
         <resourceAssignmentExpression>
-          <formalExpression>emp1</formalExpression>
+          <formalExpression>john</formalExpression>
         </resourceAssignmentExpression>
       </potentialOwner>
     </userTask>
@@ -97,39 +97,19 @@
     </endEvent>
     <userTask id="_jbpm-unique-2" name="Manager Approval" >
       <ioSpecification>
-        <dataInput id="_jbpm-unique-2_CreatedByInput" name="CreatedBy" />
-        <dataInput id="_jbpm-unique-2_CommentInput" name="Comment" />
         <dataInput id="_jbpm-unique-2_SkippableInput" name="Skippable" />
         <dataInput id="_jbpm-unique-2_LocaleInput" name="Locale" />
         <dataInput id="_jbpm-unique-2_TaskNameInput" name="TaskName" />
-        <dataInput id="_jbpm-unique-2_GroupIdInput" name="GroupId" />
-        <dataInput id="_jbpm-unique-2_PriorityInput" name="Priority" />
+        <dataInput id="_jbpm-unique-2_NodeNameInput" name="NodeName" />
         <inputSet>
-          <dataInputRefs>_jbpm-unique-2_CreatedByInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-2_CommentInput</dataInputRefs>
           <dataInputRefs>_jbpm-unique-2_SkippableInput</dataInputRefs>
           <dataInputRefs>_jbpm-unique-2_LocaleInput</dataInputRefs>
           <dataInputRefs>_jbpm-unique-2_TaskNameInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-2_GroupIdInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-2_PriorityInput</dataInputRefs>
+          <dataInputRefs>_jbpm-unique-2_NodeNameInput</dataInputRefs>
         </inputSet>
         <outputSet>
         </outputSet>
       </ioSpecification>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-2_CreatedByInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression"></from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-2_CreatedByInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-2_CommentInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression"></from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-2_CommentInput</to>
-        </assignment>
-      </dataInputAssociation>
       <dataInputAssociation>
         <targetRef>_jbpm-unique-2_SkippableInput</targetRef>
         <assignment>
@@ -152,17 +132,10 @@
         </assignment>
       </dataInputAssociation>
       <dataInputAssociation>
-        <targetRef>_jbpm-unique-2_GroupIdInput</targetRef>
+        <targetRef>_jbpm-unique-2_NodeNameInput</targetRef>
         <assignment>
-          <from xsi:type="tFormalExpression"></from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-2_GroupIdInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-2_PriorityInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression"></from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-2_PriorityInput</to>
+          <from xsi:type="tFormalExpression">Manager Approval</from>
+          <to xsi:type="tFormalExpression">_jbpm-unique-2_NodeNameInput</to>
         </assignment>
       </dataInputAssociation>
       <potentialOwner>
@@ -171,39 +144,76 @@
         </resourceAssignmentExpression>
       </potentialOwner>
     </userTask>
+    <endEvent id="_jbpm-unique-5" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <exclusiveGateway id="ExclusiveGateway_1" name="Approval" gatewayDirection="Diverging" />
 
     <!-- connections -->
     <sequenceFlow id="_1-_jbpm-unique-0" sourceRef="_1" targetRef="_jbpm-unique-0" />
-    <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-1" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-1" />
+    <sequenceFlow id="ExclusiveGateway_1-_jbpm-unique-1" sourceRef="ExclusiveGateway_1" targetRef="_jbpm-unique-1" name="Approved" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Boolean managerApproval = (Boolean)kcontext.getVariable("managerApproval");
+return managerApproval;</conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="_jbpm-unique-0-_jbpm-unique-2" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-2" />
+    <sequenceFlow id="ExclusiveGateway_1-_jbpm-unique-5" sourceRef="ExclusiveGateway_1" targetRef="_jbpm-unique-5" name="Not approved" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Boolean managerApproval = (Boolean)kcontext.getVariable("managerApproval");
+return true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-2-ExclusiveGateway_1" sourceRef="_jbpm-unique-2" targetRef="ExclusiveGateway_1" />
 
   </process>
 
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="claim.bpmn.claim_process" >
       <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="32" y="48" width="48" height="48" />
+        <dc:Bounds x="30" y="51" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-0" >
         <dc:Bounds x="161" y="38" width="159" height="74" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
-        <dc:Bounds x="219" y="245" width="48" height="48" />
+        <dc:Bounds x="217" y="416" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-2" >
         <dc:Bounds x="161" y="134" width="159" height="70" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
+        <dc:Bounds x="404" y="247" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_1" >
+        <dc:Bounds x="216" y="246" width="48" height="48" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_1-_jbpm-unique-0" >
-        <di:waypoint x="56" y="72" />
+        <di:waypoint x="54" y="75" />
+        <di:waypoint x="119" y="75" />
+        <di:waypoint x="119" y="75" />
+        <di:waypoint x="161" y="75" />
         <di:waypoint x="240" y="75" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-1" >
-        <di:waypoint x="240" y="169" />
-        <di:waypoint x="243" y="269" />
+      <bpmndi:BPMNEdge bpmnElement="ExclusiveGateway_1-_jbpm-unique-1" >
+        <di:waypoint x="240" y="270" />
+        <di:waypoint x="241" y="325" />
+        <di:waypoint x="241" y="416" />
+        <di:waypoint x="241" y="440" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-0-_jbpm-unique-2" >
         <di:waypoint x="240" y="75" />
         <di:waypoint x="240" y="169" />
+        <di:waypoint x="240" y="169" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ExclusiveGateway_1-_jbpm-unique-5" >
+        <di:waypoint x="240" y="270" />
+        <di:waypoint x="335" y="271" />
+        <di:waypoint x="404" y="271" />
+        <di:waypoint x="428" y="271" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-ExclusiveGateway_1" >
+        <di:waypoint x="240" y="169" />
+        <di:waypoint x="240" y="231" />
+        <di:waypoint x="241" y="231" />
+        <di:waypoint x="241" y="246" />
+        <di:waypoint x="240" y="270" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
