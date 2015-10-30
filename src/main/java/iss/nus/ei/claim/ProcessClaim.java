@@ -30,32 +30,43 @@ public class ProcessClaim {
 		RuntimeEngine engine = manager.getRuntimeEngine(null);
 		KieSession ksession = engine.getKieSession();
 		TaskService taskService = engine.getTaskService();
-		
+
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("managerApproval", true);
-		
-		ksession.startProcess("claim.bpmn.claim_process",params);
-		
+
+		ksession.startProcess("claim.bpmn.claim_process", params);
+
 		// let employee(john) execute Task 1
 		List<TaskSummary> johnTaskList = taskService.getTasksAssignedAsPotentialOwner("john", "en-UK");
 
 		TaskSummary task = johnTaskList.get(0);
-		System.out.println("Employee is executing task " + task.getName());
+		System.out.println("John [Employee] is executing task " + task.getName());
 		taskService.start(task.getId(), "john");
 		taskService.complete(task.getId(), "john", null);
-		
+
 		// let manager(mary) execute Task 2
 		List<TaskSummary> maryTaskList = taskService.getTasksAssignedAsPotentialOwner("mary", "en-UK");
 
 		TaskSummary maryTask = maryTaskList.get(0);
-		System.out.println("Manager is executing task " + task.getName());
+		System.out.println("Mary [Manager] is executing task " + task.getName());
 		taskService.start(maryTask.getId(), "mary");
-		
+
 		Map<String, Object> results = new HashMap<String, Object>();
 		results.put("managerApproval", false);
-		
+
 		taskService.complete(maryTask.getId(), "mary", results);
-		
+
+		// let finance department(krisv) execute Task 3
+		List<TaskSummary> krisvTaskList = taskService.getTasksAssignedAsPotentialOwner("krisv", "en-UK");
+
+		if (!krisvTaskList.isEmpty()) {
+			TaskSummary krisvTask = krisvTaskList.get(0);
+			System.out.println("[Krisv from Finance department is executing task " + task.getName());
+			taskService.start(krisvTask.getId(), "krisv");
+
+			taskService.complete(krisvTask.getId(), "krisv", null);
+		}
+
 		manager.disposeRuntimeEngine(engine);
 		System.exit(0);
 	}
