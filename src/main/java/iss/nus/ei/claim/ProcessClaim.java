@@ -18,6 +18,7 @@ import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.api.runtime.manager.RuntimeManagerFactory;
 import org.kie.api.task.TaskService;
 import org.kie.api.task.model.TaskSummary;
+import org.kie.api.task.model.User;
 
 public class ProcessClaim {
 
@@ -39,36 +40,32 @@ public class ProcessClaim {
 		// let employee(john) execute Task 1
 		List<TaskSummary> johnTaskList = taskService.getTasksAssignedAsPotentialOwner("john", "en-UK");
 
-		TaskSummary task = johnTaskList.get(0);
-		System.out.println("John [Employee] is executing task " + task.getName());
-		taskService.start(task.getId(), "john");
-		taskService.complete(task.getId(), "john", null);
+		executeTask(taskService, johnTaskList);
 
 		// let manager(mary) execute Task 2
 		List<TaskSummary> maryTaskList = taskService.getTasksAssignedAsPotentialOwner("mary", "en-UK");
 
-		TaskSummary maryTask = maryTaskList.get(0);
-		System.out.println("Mary [Manager] is executing task " + maryTask.getName());
-		taskService.start(maryTask.getId(), "mary");
-
-		Map<String, Object> results = new HashMap<String, Object>();
-		results.put("managerApproval", false);
-
-		taskService.complete(maryTask.getId(), "mary", results);
+		executeTask(taskService, maryTaskList);
 
 		// let finance department(krisv) execute Task 3
 		List<TaskSummary> krisvTaskList = taskService.getTasksAssignedAsPotentialOwner("krisv", "en-UK");
 
 		if (!krisvTaskList.isEmpty()) {
-			TaskSummary krisvTask = krisvTaskList.get(0);
-			System.out.println("Krisv [Finance department] is executing task " + krisvTask.getName());
-			taskService.start(krisvTask.getId(), "krisv");
-
-			taskService.complete(krisvTask.getId(), "krisv", null);
+			executeTask(taskService, krisvTaskList);
 		}
 
 		manager.disposeRuntimeEngine(engine);
 		System.exit(0);
+	}
+
+	private static void executeTask(TaskService taskService, List<TaskSummary> taskList) {
+		TaskSummary task = taskList.get(0);
+		User actualOwner = task.getActualOwner();
+		String userId = actualOwner == null ? "xx" : actualOwner.getId();
+		System.out.println(userId + " is executing task " + task.getName());
+		taskService.start(task.getId(), userId);
+
+		taskService.complete(task.getId(), userId, null);
 	}
 
 	private static RuntimeManager createRuntimeManager(KieBase kbase) {
