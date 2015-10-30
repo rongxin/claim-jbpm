@@ -1,367 +1,481 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<definitions id="Definition"
-             targetNamespace="http://www.jboss.org/drools"
-             typeLanguage="http://www.java.com/javaTypes"
-             expressionLanguage="http://www.mvel.org/2.0"
-             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
-             xmlns:g="http://www.jboss.org/drools/flow/gpd"
-             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
-             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
-             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
-             xmlns:tns="http://www.jboss.org/drools">
-
-  <process processType="Private" isExecutable="true" id="claim.bpmn.claim_process" name="Claim Process" >
-
-    <!-- nodes -->
-    <startEvent id="_1" name="Start"  isInterrupting="true"/>
-    <userTask id="_jbpm-unique-0" name="Fill in claim details" >
-      <ioSpecification>
-        <dataInput id="_jbpm-unique-0_SkippableInput" name="Skippable" />
-        <dataInput id="_jbpm-unique-0_LocaleInput" name="Locale" />
-        <dataInput id="_jbpm-unique-0_TaskNameInput" name="TaskName" />
-        <dataInput id="_jbpm-unique-0_NodeNameInput" name="NodeName" />
-        <inputSet>
-          <dataInputRefs>_jbpm-unique-0_SkippableInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-0_LocaleInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-0_TaskNameInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-0_NodeNameInput</dataInputRefs>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-0_SkippableInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">false</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-0_SkippableInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-0_LocaleInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">en-UK</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-0_LocaleInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-0_TaskNameInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">Fill in claim details</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-0_TaskNameInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-0_NodeNameInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">Fill in claim details</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-0_NodeNameInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <potentialOwner>
-        <resourceAssignmentExpression>
-          <formalExpression>john</formalExpression>
-        </resourceAssignmentExpression>
-      </potentialOwner>
-    </userTask>
-    <endEvent id="_jbpm-unique-1" name="End" >
-        <terminateEventDefinition />
-    </endEvent>
-    <userTask id="_jbpm-unique-2" name="Manager Approval" >
-      <ioSpecification>
-        <dataInput id="_jbpm-unique-2_SkippableInput" name="Skippable" />
-        <dataInput id="_jbpm-unique-2_LocaleInput" name="Locale" />
-        <dataInput id="_jbpm-unique-2_TaskNameInput" name="TaskName" />
-        <dataInput id="_jbpm-unique-2_NodeNameInput" name="NodeName" />
-        <inputSet>
-          <dataInputRefs>_jbpm-unique-2_SkippableInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-2_LocaleInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-2_TaskNameInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-2_NodeNameInput</dataInputRefs>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-2_SkippableInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">false</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-2_SkippableInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-2_LocaleInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">en-UK</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-2_LocaleInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-2_TaskNameInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">Manager Approval</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-2_TaskNameInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-2_NodeNameInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">Manager Approval</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-2_NodeNameInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <potentialOwner>
-        <resourceAssignmentExpression>
-          <formalExpression>mary</formalExpression>
-        </resourceAssignmentExpression>
-      </potentialOwner>
-    </userTask>
-    <endEvent id="_jbpm-unique-5" name="End" >
-        <terminateEventDefinition />
-    </endEvent>
-    <exclusiveGateway id="ExclusiveGateway_1" name="Approval" gatewayDirection="Diverging" />
-    <scriptTask id="ScriptTask_1" name="Send Reject Email" scriptFormat="http://www.java.com/java" >
-      <script>System.out.println("Sending Email regarding claim reject");</script>
-    </scriptTask>
-    <userTask id="_jbpm-unique-7" name="Verify Receipt" >
-      <ioSpecification>
-        <dataInput id="_jbpm-unique-7_CreatedByInput" name="CreatedBy" />
-        <dataInput id="_jbpm-unique-7_CommentInput" name="Comment" />
-        <dataInput id="_jbpm-unique-7_SkippableInput" name="Skippable" />
-        <dataInput id="_jbpm-unique-7_LocaleInput" name="Locale" />
-        <dataInput id="_jbpm-unique-7_TaskNameInput" name="TaskName" />
-        <dataInput id="_jbpm-unique-7_GroupIdInput" name="GroupId" />
-        <dataInput id="_jbpm-unique-7_PriorityInput" name="Priority" />
-        <inputSet>
-          <dataInputRefs>_jbpm-unique-7_CreatedByInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-7_CommentInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-7_SkippableInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-7_LocaleInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-7_TaskNameInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-7_GroupIdInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-7_PriorityInput</dataInputRefs>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-7_CreatedByInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression"></from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-7_CreatedByInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-7_CommentInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression"></from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-7_CommentInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-7_SkippableInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">false</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-7_SkippableInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-7_LocaleInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">en-UK</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-7_LocaleInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-7_TaskNameInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">Verify Receipt</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-7_TaskNameInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-7_GroupIdInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression"></from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-7_GroupIdInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-7_PriorityInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression"></from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-7_PriorityInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <potentialOwner>
-        <resourceAssignmentExpression>
-          <formalExpression>krisv</formalExpression>
-        </resourceAssignmentExpression>
-      </potentialOwner>
-    </userTask>
-    <userTask id="_jbpm-unique-9" name="Archive Documents" >
-      <ioSpecification>
-        <dataInput id="_jbpm-unique-9_SkippableInput" name="Skippable" />
-        <dataInput id="_jbpm-unique-9_LocaleInput" name="Locale" />
-        <dataInput id="_jbpm-unique-9_TaskNameInput" name="TaskName" />
-        <dataInput id="_jbpm-unique-9_NodeNameInput" name="NodeName" />
-        <inputSet>
-          <dataInputRefs>_jbpm-unique-9_SkippableInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-9_LocaleInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-9_TaskNameInput</dataInputRefs>
-          <dataInputRefs>_jbpm-unique-9_NodeNameInput</dataInputRefs>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-9_SkippableInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">false</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-9_SkippableInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-9_LocaleInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">en-UK</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-9_LocaleInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-9_TaskNameInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">Archive Documents</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-9_TaskNameInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_jbpm-unique-9_NodeNameInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">Archive Documents</from>
-          <to xsi:type="tFormalExpression">_jbpm-unique-9_NodeNameInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <potentialOwner>
-        <resourceAssignmentExpression>
-          <formalExpression>krisv</formalExpression>
-        </resourceAssignmentExpression>
-      </potentialOwner>
-    </userTask>
-
-    <!-- connections -->
-    <sequenceFlow id="_1-_jbpm-unique-0" sourceRef="_1" targetRef="_jbpm-unique-0" />
-    <sequenceFlow id="_jbpm-unique-9-_jbpm-unique-1" sourceRef="_jbpm-unique-9" targetRef="_jbpm-unique-1" />
-    <sequenceFlow id="_jbpm-unique-0-_jbpm-unique-2" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-2" />
-    <sequenceFlow id="ScriptTask_1-_jbpm-unique-5" sourceRef="ScriptTask_1" targetRef="_jbpm-unique-5" />
-    <sequenceFlow id="_jbpm-unique-2-ExclusiveGateway_1" sourceRef="_jbpm-unique-2" targetRef="ExclusiveGateway_1" />
-    <sequenceFlow id="ExclusiveGateway_1-ScriptTask_1" sourceRef="ExclusiveGateway_1" targetRef="ScriptTask_1" name="Reject" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Boolean managerApproval = (Boolean)kcontext.getVariable("managerApproval");
-//System.out.println("managerApproval:"+managerApproval);		
-return managerApproval==false;</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="ExclusiveGateway_1-_jbpm-unique-7" sourceRef="ExclusiveGateway_1" targetRef="_jbpm-unique-7" name="Approve" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Boolean managerApproval = (Boolean)kcontext.getVariable("managerApproval");
-//System.out.println("managerApproval:"+managerApproval);
-return managerApproval;</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-9" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-9" />
-
-  </process>
-
-  <bpmndi:BPMNDiagram>
-    <bpmndi:BPMNPlane bpmnElement="claim.bpmn.claim_process" >
-      <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="30" y="0" width="48" height="48" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=-88.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:java="http://www.java.com/javaTypes" xmlns:tns="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="Definition" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.2.1.201507081507" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.jboss.org/drools" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:process id="claim.bpmn.claim_process" name="Claim Process" isExecutable="true" processType="Private">
+    <bpmn2:startEvent id="_1" name="Start">
+      <bpmn2:outgoing>_1-_jbpm-unique-0</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="_jbpm-unique-0" name="Fill in claim details">
+      <bpmn2:incoming>_1-_jbpm-unique-0</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-0-_jbpm-unique-2</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_1">
+        <bpmn2:dataInput id="_jbpm-unique-0_SkippableInput" name="Skippable"/>
+        <bpmn2:dataInput id="_jbpm-unique-0_LocaleInput" name="Locale"/>
+        <bpmn2:dataInput id="_jbpm-unique-0_TaskNameInput" name="TaskName"/>
+        <bpmn2:dataInput id="_jbpm-unique-0_NodeNameInput" name="NodeName"/>
+        <bpmn2:inputSet id="InputSet_1">
+          <bpmn2:dataInputRefs>_jbpm-unique-0_SkippableInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-0_LocaleInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-0_TaskNameInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-0_NodeNameInput</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="OutputSet_1"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1">
+        <bpmn2:targetRef>_jbpm-unique-0_SkippableInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_1">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">false</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_2">_jbpm-unique-0_SkippableInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_2">
+        <bpmn2:targetRef>_jbpm-unique-0_LocaleInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_2">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_3">en-UK</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_4">_jbpm-unique-0_LocaleInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_3">
+        <bpmn2:targetRef>_jbpm-unique-0_TaskNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_3">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5">Fill in claim details</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_6">_jbpm-unique-0_TaskNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_4">
+        <bpmn2:targetRef>_jbpm-unique-0_NodeNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_4">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_7">Fill in claim details</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_8">_jbpm-unique-0_NodeNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:potentialOwner id="PotentialOwner_1">
+        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_1">
+          <bpmn2:formalExpression id="FormalExpression_9">john</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="_jbpm-unique-1" name="End">
+      <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:userTask id="_jbpm-unique-2" name="Manager Approval">
+      <bpmn2:incoming>_jbpm-unique-0-_jbpm-unique-2</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-2-ExclusiveGateway_1</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_2">
+        <bpmn2:dataInput id="_jbpm-unique-2_SkippableInput" name="Skippable"/>
+        <bpmn2:dataInput id="_jbpm-unique-2_LocaleInput" name="Locale"/>
+        <bpmn2:dataInput id="_jbpm-unique-2_TaskNameInput" name="TaskName"/>
+        <bpmn2:dataInput id="_jbpm-unique-2_NodeNameInput" name="NodeName"/>
+        <bpmn2:inputSet id="InputSet_2">
+          <bpmn2:dataInputRefs>_jbpm-unique-2_SkippableInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-2_LocaleInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-2_TaskNameInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-2_NodeNameInput</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="OutputSet_2"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_5">
+        <bpmn2:targetRef>_jbpm-unique-2_SkippableInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_5">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_10">false</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_11">_jbpm-unique-2_SkippableInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_6">
+        <bpmn2:targetRef>_jbpm-unique-2_LocaleInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_6">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_12">en-UK</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_13">_jbpm-unique-2_LocaleInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_7">
+        <bpmn2:targetRef>_jbpm-unique-2_TaskNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_7">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_14">Manager Approval</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_15">_jbpm-unique-2_TaskNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_8">
+        <bpmn2:targetRef>_jbpm-unique-2_NodeNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_8">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_16">Manager Approval</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_17">_jbpm-unique-2_NodeNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:potentialOwner id="PotentialOwner_2">
+        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_2">
+          <bpmn2:formalExpression id="FormalExpression_18">mary</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="_jbpm-unique-5" name="End">
+      <bpmn2:incoming>ScriptTask_1-_jbpm-unique-5</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_2"/>
+    </bpmn2:endEvent>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_1" name="Approval" gatewayDirection="Diverging">
+      <bpmn2:incoming>_jbpm-unique-2-ExclusiveGateway_1</bpmn2:incoming>
+      <bpmn2:outgoing>ExclusiveGateway_1-ScriptTask_1</bpmn2:outgoing>
+      <bpmn2:outgoing>ExclusiveGateway_1-_jbpm-unique-7</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:scriptTask id="ScriptTask_1" name="Send Reject Email" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>ExclusiveGateway_1-ScriptTask_1</bpmn2:incoming>
+      <bpmn2:outgoing>ScriptTask_1-_jbpm-unique-5</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;Sending Email regarding claim reject&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:userTask id="_jbpm-unique-7" name="Verify Receipt">
+      <bpmn2:incoming>ExclusiveGateway_1-_jbpm-unique-7</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-7-_jbpm-unique-9</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_3">
+        <bpmn2:dataInput id="_jbpm-unique-7_CreatedByInput" name="CreatedBy"/>
+        <bpmn2:dataInput id="_jbpm-unique-7_CommentInput" name="Comment"/>
+        <bpmn2:dataInput id="_jbpm-unique-7_SkippableInput" name="Skippable"/>
+        <bpmn2:dataInput id="_jbpm-unique-7_LocaleInput" name="Locale"/>
+        <bpmn2:dataInput id="_jbpm-unique-7_TaskNameInput" name="TaskName"/>
+        <bpmn2:dataInput id="_jbpm-unique-7_GroupIdInput" name="GroupId"/>
+        <bpmn2:dataInput id="_jbpm-unique-7_PriorityInput" name="Priority"/>
+        <bpmn2:inputSet id="InputSet_3">
+          <bpmn2:dataInputRefs>_jbpm-unique-7_CreatedByInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-7_CommentInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-7_SkippableInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-7_LocaleInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-7_TaskNameInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-7_GroupIdInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-7_PriorityInput</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="OutputSet_3"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_9">
+        <bpmn2:targetRef>_jbpm-unique-7_CreatedByInput</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_10">
+        <bpmn2:targetRef>_jbpm-unique-7_CommentInput</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_11">
+        <bpmn2:targetRef>_jbpm-unique-7_SkippableInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_11">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_23">false</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_24">_jbpm-unique-7_SkippableInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_12">
+        <bpmn2:targetRef>_jbpm-unique-7_LocaleInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_12">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_25">en-UK</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_26">_jbpm-unique-7_LocaleInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_13">
+        <bpmn2:targetRef>_jbpm-unique-7_TaskNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_13">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_27">Verify Receipt</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_28">_jbpm-unique-7_TaskNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_14">
+        <bpmn2:targetRef>_jbpm-unique-7_GroupIdInput</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_15">
+        <bpmn2:targetRef>_jbpm-unique-7_PriorityInput</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:potentialOwner id="PotentialOwner_3">
+        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_3">
+          <bpmn2:formalExpression id="FormalExpression_33">krisv</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="_jbpm-unique-9" name="Archive Documents">
+      <bpmn2:incoming>_jbpm-unique-7-_jbpm-unique-9</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-9-_jbpm-unique-1</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_4">
+        <bpmn2:dataInput id="_jbpm-unique-9_SkippableInput" name="Skippable"/>
+        <bpmn2:dataInput id="_jbpm-unique-9_LocaleInput" name="Locale"/>
+        <bpmn2:dataInput id="_jbpm-unique-9_TaskNameInput" name="TaskName"/>
+        <bpmn2:dataInput id="_jbpm-unique-9_NodeNameInput" name="NodeName"/>
+        <bpmn2:inputSet id="InputSet_4">
+          <bpmn2:dataInputRefs>_jbpm-unique-9_SkippableInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-9_LocaleInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-9_TaskNameInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_jbpm-unique-9_NodeNameInput</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="OutputSet_4"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_16">
+        <bpmn2:targetRef>_jbpm-unique-9_SkippableInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_16">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_34">false</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_35">_jbpm-unique-9_SkippableInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_17">
+        <bpmn2:targetRef>_jbpm-unique-9_LocaleInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_17">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_36">en-UK</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_37">_jbpm-unique-9_LocaleInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_18">
+        <bpmn2:targetRef>_jbpm-unique-9_TaskNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_18">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_38">Archive Documents</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_39">_jbpm-unique-9_TaskNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_19">
+        <bpmn2:targetRef>_jbpm-unique-9_NodeNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_19">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_40">Archive Documents</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_41">_jbpm-unique-9_NodeNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:potentialOwner id="PotentialOwner_4">
+        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_4">
+          <bpmn2:formalExpression id="FormalExpression_42">krisv</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="_1-_jbpm-unique-0" sourceRef="_1" targetRef="_jbpm-unique-0"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-9-_jbpm-unique-1" sourceRef="_jbpm-unique-9" targetRef="ParallelGateway_1"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-0-_jbpm-unique-2" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-2"/>
+    <bpmn2:sequenceFlow id="ScriptTask_1-_jbpm-unique-5" sourceRef="ScriptTask_1" targetRef="_jbpm-unique-5"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-2-ExclusiveGateway_1" sourceRef="_jbpm-unique-2" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:sequenceFlow id="ExclusiveGateway_1-ScriptTask_1" name="Reject" sourceRef="ExclusiveGateway_1" targetRef="ScriptTask_1">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_43" language="http://www.java.com/java">Boolean managerApproval = (Boolean)kcontext.getVariable(&quot;managerApproval&quot;);
+//System.out.println(&quot;managerApproval:&quot;+managerApproval);		
+return managerApproval==false;</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="ExclusiveGateway_1-_jbpm-unique-7" name="Approve" sourceRef="ExclusiveGateway_1" targetRef="_jbpm-unique-7">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_44" language="http://www.java.com/java">Boolean managerApproval = (Boolean)kcontext.getVariable(&quot;managerApproval&quot;);
+//System.out.println(&quot;managerApproval:&quot;+managerApproval);
+return managerApproval;</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_jbpm-unique-7-_jbpm-unique-9" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-9"/>
+    <bpmn2:parallelGateway id="ParallelGateway_1" name="Process Results" gatewayDirection="Diverging">
+      <bpmn2:incoming>_jbpm-unique-9-_jbpm-unique-1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" tns:priority="1" sourceRef="ParallelGateway_1" targetRef="ScriptTask_2"/>
+    <bpmn2:scriptTask id="ScriptTask_2" name="Send Result Email" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;[Call Service] Send claim results email&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="ScriptTask_3" name="Update payroll" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;[Call Service] Update payroll&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" tns:priority="1" sourceRef="ParallelGateway_1" targetRef="ScriptTask_3"/>
+    <bpmn2:scriptTask id="ScriptTask_4" name="Generate Reports" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;[Call Service] Generate reports&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_3" tns:priority="1" sourceRef="ParallelGateway_1" targetRef="ScriptTask_4"/>
+    <bpmn2:parallelGateway id="ParallelGateway_2" name="Parallel Gateway 2" gatewayDirection="Converging">
+      <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_4" tns:priority="1" sourceRef="ScriptTask_2" targetRef="ParallelGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_5" tns:priority="1" sourceRef="ScriptTask_4" targetRef="ParallelGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_6" tns:priority="1" sourceRef="ScriptTask_3" targetRef="ParallelGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_7" tns:priority="1" sourceRef="ParallelGateway_2" targetRef="_jbpm-unique-1"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process_1" bpmnElement="claim.bpmn.claim_process">
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="_1">
+        <dc:Bounds height="48.0" width="48.0" x="216.0" y="0.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="25.0" x="227.0" y="48.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-0" >
-        <dc:Bounds x="161" y="38" width="159" height="74" />
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_1" bpmnElement="_jbpm-unique-0">
+        <dc:Bounds height="74.0" width="159.0" x="161.0" y="126.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="100.0" x="190.0" y="156.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
-        <dc:Bounds x="272" y="642" width="48" height="48" />
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="_jbpm-unique-1">
+        <dc:Bounds height="48.0" width="48.0" x="266.0" y="1048.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="22.0" x="279.0" y="1096.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-2" >
-        <dc:Bounds x="161" y="134" width="159" height="70" />
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_2" bpmnElement="_jbpm-unique-2">
+        <dc:Bounds height="70.0" width="159.0" x="161.0" y="248.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="100.0" x="190.0" y="276.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
-        <dc:Bounds x="634" y="274" width="48" height="48" />
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_2" bpmnElement="_jbpm-unique-5">
+        <dc:Bounds height="48.0" width="48.0" x="634.0" y="354.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="22.0" x="647.0" y="402.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_1" >
-        <dc:Bounds x="272" y="266" width="48" height="48" />
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="ExclusiveGateway_1" isMarkerVisible="true">
+        <dc:Bounds height="48.0" width="48.0" x="272.0" y="354.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="49.0" x="272.0" y="402.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="ScriptTask_1" >
-        <dc:Bounds x="430" y="283" width="110" height="50" />
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_1" bpmnElement="ScriptTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="442.0" y="353.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="101.0" x="446.0" y="371.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
-        <dc:Bounds x="228" y="389" width="135" height="82" />
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_3" bpmnElement="_jbpm-unique-7">
+        <dc:Bounds height="82.0" width="135.0" x="229.0" y="488.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="75.0" x="259.0" y="522.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-9" >
-        <dc:Bounds x="229" y="510" width="135" height="80" />
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_4" bpmnElement="_jbpm-unique-9">
+        <dc:Bounds height="80.0" width="135.0" x="228.0" y="638.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="106.0" x="242.0" y="671.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_1-_jbpm-unique-0" >
-        <di:waypoint x="54" y="24" />
-        <di:waypoint x="119" y="24" />
-        <di:waypoint x="119" y="28" />
-        <di:waypoint x="161" y="28" />
-        <di:waypoint x="240" y="28" />
-        <di:waypoint x="240" y="28" />
-        <di:waypoint x="240" y="38" />
-        <di:waypoint x="240" y="75" />
-        <di:waypoint x="240" y="75" />
-        <di:waypoint x="240" y="75" />
+      <bpmndi:BPMNShape id="BPMNShape_ParallelGateway_1" bpmnElement="ParallelGateway_1" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="272.0" y="743.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="28.0" width="50.0" x="272.0" y="793.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_2" bpmnElement="ScriptTask_2">
+        <dc:Bounds height="50.0" width="110.0" x="460.0" y="808.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="101.0" x="464.0" y="826.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_3" bpmnElement="ScriptTask_3">
+        <dc:Bounds height="50.0" width="110.0" x="105.0" y="820.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="80.0" x="120.0" y="838.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_4" bpmnElement="ScriptTask_4">
+        <dc:Bounds height="50.0" width="110.0" x="242.0" y="851.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="97.0" x="248.0" y="869.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ParallelGateway_2" bpmnElement="ParallelGateway_2" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="265.0" y="933.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="28.0" width="58.0" x="261.0" y="983.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="_1-_jbpm-unique-0" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_UserTask_1">
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="48.0"/>
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="87.0"/>
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="126.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-9-_jbpm-unique-1" >
-        <di:waypoint x="296" y="550" />
-        <di:waypoint x="296" y="616" />
-        <di:waypoint x="296" y="642" />
-        <di:waypoint x="296" y="666" />
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="_jbpm-unique-9-_jbpm-unique-1" sourceElement="BPMNShape_UserTask_4" targetElement="BPMNShape_ParallelGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="295.0" y="718.0"/>
+        <di:waypoint xsi:type="dc:Point" x="295.0" y="730.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="730.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="743.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-0-_jbpm-unique-2" >
-        <di:waypoint x="240" y="75" />
-        <di:waypoint x="240" y="169" />
-        <di:waypoint x="240" y="169" />
-        <di:waypoint x="240" y="169" />
-        <di:waypoint x="240" y="169" />
-        <di:waypoint x="240" y="169" />
-        <di:waypoint x="240" y="169" />
-        <di:waypoint x="240" y="169" />
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="_jbpm-unique-0-_jbpm-unique-2" sourceElement="BPMNShape_UserTask_1" targetElement="BPMNShape_UserTask_2">
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="200.0"/>
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="224.0"/>
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="248.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="ScriptTask_1-_jbpm-unique-5" >
-        <di:waypoint x="485" y="308" />
-        <di:waypoint x="577" y="308" />
-        <di:waypoint x="577" y="298" />
-        <di:waypoint x="634" y="298" />
-        <di:waypoint x="658" y="298" />
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="ScriptTask_1-_jbpm-unique-5" sourceElement="BPMNShape_ScriptTask_1" targetElement="BPMNShape_EndEvent_2">
+        <di:waypoint xsi:type="dc:Point" x="552.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="567.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="567.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="624.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="634.0" y="378.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-ExclusiveGateway_1" >
-        <di:waypoint x="240" y="169" />
-        <di:waypoint x="240" y="290" />
-        <di:waypoint x="272" y="290" />
-        <di:waypoint x="296" y="290" />
-        <di:waypoint x="296" y="290" />
-        <di:waypoint x="296" y="290" />
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="_jbpm-unique-2-ExclusiveGateway_1" sourceElement="BPMNShape_UserTask_2" targetElement="BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="318.0"/>
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="272.0" y="378.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="ExclusiveGateway_1-ScriptTask_1" >
-        <di:waypoint x="296" y="290" />
-        <di:waypoint x="375" y="290" />
-        <di:waypoint x="375" y="308" />
-        <di:waypoint x="430" y="308" />
-        <di:waypoint x="485" y="308" />
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="ExclusiveGateway_1-ScriptTask_1" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_ScriptTask_1">
+        <di:waypoint xsi:type="dc:Point" x="320.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="369.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="369.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="424.0" y="378.0"/>
+        <di:waypoint xsi:type="dc:Point" x="442.0" y="378.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="35.0" x="358.0" y="388.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="ExclusiveGateway_1-_jbpm-unique-7" >
-        <di:waypoint x="296" y="290" />
-        <di:waypoint x="296" y="351" />
-        <di:waypoint x="295" y="389" />
-        <di:waypoint x="295" y="430" />
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="ExclusiveGateway_1-_jbpm-unique-7" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_UserTask_3">
+        <di:waypoint xsi:type="dc:Point" x="296.0" y="402.0"/>
+        <di:waypoint xsi:type="dc:Point" x="296.0" y="439.0"/>
+        <di:waypoint xsi:type="dc:Point" x="296.0" y="477.0"/>
+        <di:waypoint xsi:type="dc:Point" x="296.0" y="488.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+          <dc:Bounds height="14.0" width="46.0" x="274.0" y="441.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-9" >
-        <di:waypoint x="295" y="430" />
-        <di:waypoint x="296" y="486" />
-        <di:waypoint x="296" y="510" />
-        <di:waypoint x="296" y="550" />
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_8" bpmnElement="_jbpm-unique-7-_jbpm-unique-9" sourceElement="BPMNShape_UserTask_3" targetElement="BPMNShape_UserTask_4">
+        <di:waypoint xsi:type="dc:Point" x="296.0" y="570.0"/>
+        <di:waypoint xsi:type="dc:Point" x="296.0" y="604.0"/>
+        <di:waypoint xsi:type="dc:Point" x="295.0" y="638.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_9" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_ParallelGateway_1" targetElement="BPMNShape_ScriptTask_2">
+        <di:waypoint xsi:type="dc:Point" x="322.0" y="768.0"/>
+        <di:waypoint xsi:type="dc:Point" x="397.0" y="768.0"/>
+        <di:waypoint xsi:type="dc:Point" x="397.0" y="833.0"/>
+        <di:waypoint xsi:type="dc:Point" x="460.0" y="833.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_10" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_ParallelGateway_1" targetElement="BPMNShape_ScriptTask_3">
+        <di:waypoint xsi:type="dc:Point" x="272.0" y="768.0"/>
+        <di:waypoint xsi:type="dc:Point" x="160.0" y="768.0"/>
+        <di:waypoint xsi:type="dc:Point" x="160.0" y="820.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_11" bpmnElement="SequenceFlow_3" sourceElement="BPMNShape_ParallelGateway_1" targetElement="BPMNShape_ScriptTask_4">
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="793.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="822.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="851.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_12" bpmnElement="SequenceFlow_4" sourceElement="BPMNShape_ScriptTask_2" targetElement="BPMNShape_ParallelGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="515.0" y="858.0"/>
+        <di:waypoint xsi:type="dc:Point" x="515.0" y="958.0"/>
+        <di:waypoint xsi:type="dc:Point" x="315.0" y="958.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_13" bpmnElement="SequenceFlow_5" sourceElement="BPMNShape_ScriptTask_4" targetElement="BPMNShape_ParallelGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="901.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="917.0"/>
+        <di:waypoint xsi:type="dc:Point" x="290.0" y="917.0"/>
+        <di:waypoint xsi:type="dc:Point" x="290.0" y="933.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_14" bpmnElement="SequenceFlow_6" sourceElement="BPMNShape_ScriptTask_3" targetElement="BPMNShape_ParallelGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="160.0" y="870.0"/>
+        <di:waypoint xsi:type="dc:Point" x="160.0" y="958.0"/>
+        <di:waypoint xsi:type="dc:Point" x="265.0" y="958.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_15" bpmnElement="SequenceFlow_7" sourceElement="BPMNShape_ParallelGateway_2" targetElement="BPMNShape_EndEvent_1">
+        <di:waypoint xsi:type="dc:Point" x="290.0" y="983.0"/>
+        <di:waypoint xsi:type="dc:Point" x="290.0" y="1008.0"/>
+        <di:waypoint xsi:type="dc:Point" x="290.0" y="1048.0"/>
+        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
+    <bpmndi:BPMNLabelStyle>
+      <dc:Font name="arial" size="9.0"/>
+    </bpmndi:BPMNLabelStyle>
   </bpmndi:BPMNDiagram>
-
-</definitions>
+</bpmn2:definitions>

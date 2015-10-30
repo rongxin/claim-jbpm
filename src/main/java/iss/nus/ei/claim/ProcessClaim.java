@@ -64,7 +64,7 @@ public class ProcessClaim {
 		TaskSummary task = taskList.get(index);
 		User actualOwner = task.getActualOwner();
 		String userId = actualOwner == null ? "xx" : actualOwner.getId();
-		System.out.println(userId + " is executing task " + task.getName());
+		System.out.println(userId + " is executing task [" + task.getName()+"]");
 		taskService.start(task.getId(), userId);
 
 		taskService.complete(task.getId(), userId, null);
