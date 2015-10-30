@@ -191,12 +191,12 @@
     <bpmn2:sequenceFlow id="_jbpm-unique-2-ExclusiveGateway_1" sourceRef="_jbpm-unique-2" targetRef="ExclusiveGateway_1"/>
     <bpmn2:sequenceFlow id="ExclusiveGateway_1-ScriptTask_1" name="Reject" sourceRef="ExclusiveGateway_1" targetRef="ScriptTask_1">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_34" language="http://www.java.com/java">Boolean managerApproval = (Boolean)kcontext.getVariable(&quot;managerApproval&quot;);
-		
-return managerApproval;</bpmn2:conditionExpression>
+//System.out.println(&quot;managerApproval:&quot;+managerApproval);		
+return managerApproval==false;</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="ExclusiveGateway_1-_jbpm-unique-7" name="Approve" sourceRef="ExclusiveGateway_1" targetRef="_jbpm-unique-7">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_39" language="http://www.java.com/java">Boolean managerApproval = (Boolean)kcontext.getVariable(&quot;managerApproval&quot;);
-		
+//System.out.println(&quot;managerApproval:&quot;+managerApproval);
 return managerApproval;</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
   </bpmn2:process>

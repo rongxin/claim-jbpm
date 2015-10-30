@@ -48,7 +48,7 @@ public class ProcessClaim {
 		List<TaskSummary> maryTaskList = taskService.getTasksAssignedAsPotentialOwner("mary", "en-UK");
 
 		TaskSummary maryTask = maryTaskList.get(0);
-		System.out.println("Mary [Manager] is executing task " + task.getName());
+		System.out.println("Mary [Manager] is executing task " + maryTask.getName());
 		taskService.start(maryTask.getId(), "mary");
 
 		Map<String, Object> results = new HashMap<String, Object>();
@@ -61,7 +61,7 @@ public class ProcessClaim {
 
 		if (!krisvTaskList.isEmpty()) {
 			TaskSummary krisvTask = krisvTaskList.get(0);
-			System.out.println("[Krisv from Finance department is executing task " + task.getName());
+			System.out.println("Krisv [Finance department] is executing task " + krisvTask.getName());
 			taskService.start(krisvTask.getId(), "krisv");
 
 			taskService.complete(krisvTask.getId(), "krisv", null);
