@@ -40,26 +40,28 @@ public class ProcessClaim {
 		// let employee(john) execute Task 1
 		List<TaskSummary> johnTaskList = taskService.getTasksAssignedAsPotentialOwner("john", "en-UK");
 
-		executeTask(taskService, johnTaskList);
+		executeTask(taskService, johnTaskList,0);
 
 		// let manager(mary) execute Task 2
 		List<TaskSummary> maryTaskList = taskService.getTasksAssignedAsPotentialOwner("mary", "en-UK");
 
-		executeTask(taskService, maryTaskList);
+		executeTask(taskService, maryTaskList,0);
 
 		// let finance department(krisv) execute Task 3
 		List<TaskSummary> krisvTaskList = taskService.getTasksAssignedAsPotentialOwner("krisv", "en-UK");
 
 		if (!krisvTaskList.isEmpty()) {
-			executeTask(taskService, krisvTaskList);
+			executeTask(taskService, krisvTaskList,0);
+			executeTask(taskService, krisvTaskList,1);
 		}
 
 		manager.disposeRuntimeEngine(engine);
 		System.exit(0);
 	}
 
-	private static void executeTask(TaskService taskService, List<TaskSummary> taskList) {
-		TaskSummary task = taskList.get(0);
+	
+	private static void executeTask(TaskService taskService, List<TaskSummary> taskList, int index) {
+		TaskSummary task = taskList.get(index);
 		User actualOwner = task.getActualOwner();
 		String userId = actualOwner == null ? "xx" : actualOwner.getId();
 		System.out.println(userId + " is executing task " + task.getName());
