@@ -24,25 +24,30 @@ import org.kie.api.task.model.TaskSummary;
 import org.kie.api.task.model.User;
 
 public class ProcessClaimTest {
+	private KieSession ksession;
+	private TaskService taskService;
+	private RuntimeManager manager;
+	private RuntimeEngine engine;
 
 	@Before
 	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void claimApprovedSenario() {
 		KieServices ks = KieServices.Factory.get();
 		KieContainer kContainer = ks.getKieClasspathContainer();
 		KieBase kbase = kContainer.getKieBase("kbase");
 
-		RuntimeManager manager = createRuntimeManager(kbase);
-		RuntimeEngine engine = manager.getRuntimeEngine(null);
-		KieSession ksession = engine.getKieSession();
-		TaskService taskService = engine.getTaskService();
+		manager = createRuntimeManager(kbase);
+		engine = manager.getRuntimeEngine(null);
+		ksession = engine.getKieSession();
+		taskService = engine.getTaskService();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		manager.disposeRuntimeEngine(engine);
+	}
+
+	@Test
+	public void claimApprovedSenario() {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("managerApproval", true);
@@ -67,20 +72,11 @@ public class ProcessClaimTest {
 			executeTask(taskService, krisvTaskList, 1);
 		}
 
-		manager.disposeRuntimeEngine(engine);
 	}
 
 	@Test
 	public void claimRejectedSenario() {
-		KieServices ks = KieServices.Factory.get();
-		KieContainer kContainer = ks.getKieClasspathContainer();
-		KieBase kbase = kContainer.getKieBase("kbase");
-
-		RuntimeManager manager = createRuntimeManager(kbase);
-		RuntimeEngine engine = manager.getRuntimeEngine(null);
-		KieSession ksession = engine.getKieSession();
-		TaskService taskService = engine.getTaskService();
-
+		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("managerApproval", false);
 
@@ -102,7 +98,6 @@ public class ProcessClaimTest {
 		executeTask(taskService, krisvTaskList, 0);
 		executeTask(taskService, krisvTaskList, 1);
 
-		manager.disposeRuntimeEngine(engine);
 	}
 
 	private void executeTask(TaskService taskService, List<TaskSummary> taskList, int index) {
@@ -110,12 +105,12 @@ public class ProcessClaimTest {
 			return;
 		}
 		TaskSummary task = taskList.get(index);
-		if (task==null){
+		if (task == null) {
 			return;
 		}
-		
+
 		User actualOwner = task.getActualOwner();
-		if (actualOwner==null){
+		if (actualOwner == null) {
 			return;
 		}
 		String userId = actualOwner == null ? "xx" : actualOwner.getId();
