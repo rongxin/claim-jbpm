@@ -282,7 +282,7 @@ return false;
       <bpmn2:script>System.out.println(&quot;[Call Service] Generate reports&quot;);</bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:sequenceFlow id="SequenceFlow_3" tns:priority="1" sourceRef="ParallelGateway_1" targetRef="ScriptTask_4"/>
-    <bpmn2:parallelGateway id="ParallelGateway_2" name="Parallel Gateway 2" gatewayDirection="Converging">
+    <bpmn2:parallelGateway id="ParallelGateway_2" name="Finish" gatewayDirection="Converging">
       <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
       <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
@@ -308,9 +308,9 @@ return false;
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="_jbpm-unique-1">
-        <dc:Bounds height="48.0" width="48.0" x="266.0" y="1048.0"/>
+        <dc:Bounds height="48.0" width="48.0" x="273.0" y="1063.0"/>
         <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
-          <dc:Bounds height="14.0" width="22.0" x="279.0" y="1096.0"/>
+          <dc:Bounds height="14.0" width="22.0" x="286.0" y="1111.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_UserTask_2" bpmnElement="_jbpm-unique-2">
@@ -374,9 +374,9 @@ return false;
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_ParallelGateway_2" bpmnElement="ParallelGateway_2" isMarkerVisible="true">
-        <dc:Bounds height="50.0" width="50.0" x="265.0" y="933.0"/>
+        <dc:Bounds height="50.0" width="50.0" x="272.0" y="947.0"/>
         <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
-          <dc:Bounds height="28.0" width="58.0" x="261.0" y="983.0"/>
+          <dc:Bounds height="14.0" width="33.0" x="280.0" y="997.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="_1-_jbpm-unique-0" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_UserTask_1">
@@ -458,27 +458,26 @@ return false;
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_12" bpmnElement="SequenceFlow_4" sourceElement="BPMNShape_ScriptTask_2" targetElement="BPMNShape_ParallelGateway_2">
         <di:waypoint xsi:type="dc:Point" x="515.0" y="858.0"/>
-        <di:waypoint xsi:type="dc:Point" x="515.0" y="958.0"/>
-        <di:waypoint xsi:type="dc:Point" x="315.0" y="958.0"/>
+        <di:waypoint xsi:type="dc:Point" x="515.0" y="972.0"/>
+        <di:waypoint xsi:type="dc:Point" x="322.0" y="972.0"/>
         <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_13" bpmnElement="SequenceFlow_5" sourceElement="BPMNShape_ScriptTask_4" targetElement="BPMNShape_ParallelGateway_2">
         <di:waypoint xsi:type="dc:Point" x="297.0" y="901.0"/>
-        <di:waypoint xsi:type="dc:Point" x="297.0" y="917.0"/>
-        <di:waypoint xsi:type="dc:Point" x="290.0" y="917.0"/>
-        <di:waypoint xsi:type="dc:Point" x="290.0" y="933.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="924.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="947.0"/>
         <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_14" bpmnElement="SequenceFlow_6" sourceElement="BPMNShape_ScriptTask_3" targetElement="BPMNShape_ParallelGateway_2">
         <di:waypoint xsi:type="dc:Point" x="160.0" y="870.0"/>
-        <di:waypoint xsi:type="dc:Point" x="160.0" y="958.0"/>
-        <di:waypoint xsi:type="dc:Point" x="265.0" y="958.0"/>
+        <di:waypoint xsi:type="dc:Point" x="160.0" y="972.0"/>
+        <di:waypoint xsi:type="dc:Point" x="272.0" y="972.0"/>
         <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_15" bpmnElement="SequenceFlow_7" sourceElement="BPMNShape_ParallelGateway_2" targetElement="BPMNShape_EndEvent_1">
-        <di:waypoint xsi:type="dc:Point" x="290.0" y="983.0"/>
-        <di:waypoint xsi:type="dc:Point" x="290.0" y="1008.0"/>
-        <di:waypoint xsi:type="dc:Point" x="290.0" y="1048.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="997.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="1030.0"/>
+        <di:waypoint xsi:type="dc:Point" x="297.0" y="1063.0"/>
         <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
