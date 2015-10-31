@@ -239,15 +239,23 @@
     <bpmn2:sequenceFlow id="_jbpm-unique-0-_jbpm-unique-2" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-2"/>
     <bpmn2:sequenceFlow id="ScriptTask_1-_jbpm-unique-5" sourceRef="ScriptTask_1" targetRef="_jbpm-unique-5"/>
     <bpmn2:sequenceFlow id="_jbpm-unique-2-ExclusiveGateway_1" sourceRef="_jbpm-unique-2" targetRef="ExclusiveGateway_1"/>
-    <bpmn2:sequenceFlow id="ExclusiveGateway_1-ScriptTask_1" name="Reject" sourceRef="ExclusiveGateway_1" targetRef="ScriptTask_1">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_43" language="http://www.java.com/java">Boolean managerApproval = (Boolean)kcontext.getVariable(&quot;managerApproval&quot;);
-//System.out.println(&quot;managerApproval:&quot;+managerApproval);		
-return managerApproval==false;</bpmn2:conditionExpression>
+    <bpmn2:sequenceFlow id="ExclusiveGateway_1-ScriptTask_1" tns:priority="1" name="Reject" sourceRef="ExclusiveGateway_1" targetRef="ScriptTask_1">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_106" language="http://www.java.com/java">Boolean managerApproval = (Boolean)kcontext.getVariable(&quot;managerApproval&quot;);
+//System.out.println(&quot;managerApproval:&quot;+managerApproval);
+if (managerApproval){
+return false;
+}else{
+return true;
+}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="ExclusiveGateway_1-_jbpm-unique-7" name="Approve" sourceRef="ExclusiveGateway_1" targetRef="_jbpm-unique-7">
+    <bpmn2:sequenceFlow id="ExclusiveGateway_1-_jbpm-unique-7" tns:priority="2" name="Approve" sourceRef="ExclusiveGateway_1" targetRef="_jbpm-unique-7">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_44" language="http://www.java.com/java">Boolean managerApproval = (Boolean)kcontext.getVariable(&quot;managerApproval&quot;);
 //System.out.println(&quot;managerApproval:&quot;+managerApproval);
-return managerApproval;</bpmn2:conditionExpression>
+if (managerApproval){
+return true;
+}else{
+return false;
+}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_jbpm-unique-7-_jbpm-unique-9" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-9"/>
     <bpmn2:parallelGateway id="ParallelGateway_1" name="Process Results" gatewayDirection="Diverging">
